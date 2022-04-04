@@ -4,5 +4,5 @@ QT += webenginewidgets
 
 SOURCES += main.cpp
 
-target.path = $$[QT_INSTALL_EXAMPLES]/webenginewidgets/minimal
+target.path = /opt/browser/minimal-qt5-browser/bin
 INSTALLS += target
