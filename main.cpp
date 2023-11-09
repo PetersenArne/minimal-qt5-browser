@@ -57,16 +57,24 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     QWebEngineView view;
 
+    if (app.arguments().size() < 4) {
+        QTextStream(stderr) << "Usage: program <port> <width> <height>" << endl;
+        return 1;
+    }
+
+    QString port = app.arguments().at(1);
+    int width = app.arguments().at(2).toInt();
+    int height = app.arguments().at(3).toInt();
 
     /* disable "right click" menu */
     view.setContextMenuPolicy( Qt::NoContextMenu );
 
 
-    QString url = "http://localhost:" + QCoreApplication::arguments().at(1);
+    QString url = "http://localhost:" + port;
     QTextStream(stdout) << "Set url to: " + url << endl;
-    view.setUrl(QUrl(url));
 
-    view.resize(800, 600);
+    view.setUrl(QUrl(url));
+    view.resize(width, height);
     view.show();
 
     return app.exec();
