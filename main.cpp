@@ -7,13 +7,13 @@
 class MyWebEngineView : public QWebEngineView
 {
     Q_OBJECT
+    QTextStream out(stdout);
 
 public:
     MyWebEngineView(const QString& url, int width, int height)
         : url_(url), width_(width), height_(height)
     {
         connect(this, &QWebEngineView::loadFinished, this, &MyWebEngineView::onLoadFinished);
-        QTextStream out(stdout);
     }
 
     void startLoad()
@@ -29,7 +29,7 @@ private slots:
     {
         if (success) {
             // Page loaded successfully
-            out << "Page loaded successfully" << endl;
+            QTextStream(stdout) << "Page loaded successfully" << endl;
             show();
         } else {
             // Error loading the page
@@ -42,6 +42,7 @@ private slots:
 
     void retryLoad()
     {
+        QTextStream(stdout) << "Page loaded successfully" << endl;
         //QTextStream(stdout) << "Retrying to load the page..." << endl;
         startLoad(); // Retry loading the page
     }
