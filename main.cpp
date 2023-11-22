@@ -30,6 +30,8 @@ private slots:
         } else {
             // Error loading the page
             QTextStream(stdout) << "Error loading the page" << endl;
+            setUrl(QUrl("http://localhost"));
+            show();
         }
     }
 
