@@ -7,7 +7,6 @@
 class MyWebEngineView : public QWebEngineView
 {
     Q_OBJECT
-    QTextStream out(stdout);
 
 public:
     MyWebEngineView(const QString& url, int width, int height)
