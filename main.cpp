@@ -42,7 +42,6 @@ private slots:
 
     void retryLoad()
     {
-        QTextStream(stdout) << "Page loaded successfully" << endl;
         //QTextStream(stdout) << "Retrying to load the page..." << endl;
         startLoad(); // Retry loading the page
     }
