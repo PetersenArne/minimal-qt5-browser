@@ -16,6 +16,7 @@ public:
 
     void startLoad()
     {
+        QTextStream(stdout) << "Start loading the page" << endl;
         setUrl(QUrl(url_));
         resize(width_, height_);
         //show();
