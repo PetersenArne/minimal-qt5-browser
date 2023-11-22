@@ -18,7 +18,7 @@ public:
     {
         setUrl(QUrl(url_));
         resize(width_, height_);
-        show();
+        //show();
     }
 
 private slots:
@@ -27,11 +27,12 @@ private slots:
         if (success) {
             // Page loaded successfully
             QTextStream(stdout) << "Page loaded successfully" << endl;
+            show();
         } else {
             // Error loading the page
             QTextStream(stdout) << "Error loading the page" << endl;
-            setUrl(QUrl("http://localhost"));
-            show();
+            //setUrl(QUrl("http://localhost"));
+            //show();
         }
     }
 
