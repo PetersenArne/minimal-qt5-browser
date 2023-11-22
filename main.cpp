@@ -2,6 +2,7 @@
 #include <QApplication>
 #include <QTextStream>
 #include <QWebEngineView>
+#include <QTimer>
 
 class MyWebEngineView : public QWebEngineView
 {
@@ -16,7 +17,7 @@ public:
 
     void startLoad()
     {
-        QTextStream(stdout) << "Start loading the page" << endl;
+        //QTextStream(stdout) << "Start loading the page" << endl;
         setUrl(QUrl(url_));
         resize(width_, height_);
         //show();
@@ -40,7 +41,7 @@ private slots:
 
     void retryLoad()
     {
-        QTextStream(stdout) << "Retrying to load the page..." << endl;
+        //QTextStream(stdout) << "Retrying to load the page..." << endl;
         startLoad(); // Retry loading the page
     }
 
