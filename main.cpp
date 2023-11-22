@@ -7,13 +7,13 @@
 class MyWebEngineView : public QWebEngineView
 {
     Q_OBJECT
-    QTextStream out(stdout);
 
 public:
     MyWebEngineView(const QString& url, int width, int height)
         : url_(url), width_(width), height_(height)
     {
         connect(this, &QWebEngineView::loadFinished, this, &MyWebEngineView::onLoadFinished);
+        QTextStream out(stdout);
     }
 
     void startLoad()
