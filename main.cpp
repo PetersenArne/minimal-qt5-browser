@@ -31,9 +31,16 @@ private slots:
         } else {
             // Error loading the page
             QTextStream(stdout) << "Error loading the page" << endl;
-            //setUrl(QUrl("http://localhost"));
-            //show();
+            
+            // Use a QTimer to retry loading in 10 seconds
+            QTimer::singleShot(10000, this, &MyWebEngineView::retryLoad);
         }
+    }
+
+    void retryLoad()
+    {
+        QTextStream(stdout) << "Retrying to load the page..." << endl;
+        startLoad(); // Retry loading the page
     }
 
 private:
