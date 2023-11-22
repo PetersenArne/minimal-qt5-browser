@@ -7,6 +7,7 @@
 class MyWebEngineView : public QWebEngineView
 {
     Q_OBJECT
+    QTextStream out(stdout);
 
 public:
     MyWebEngineView(const QString& url, int width, int height)
@@ -28,7 +29,7 @@ private slots:
     {
         if (success) {
             // Page loaded successfully
-            QTextStream(stdout) << "Page loaded successfully" << endl;
+            out << "Page loaded successfully" << endl;
             show();
         } else {
             // Error loading the page
