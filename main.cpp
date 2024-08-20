@@ -65,10 +65,10 @@ int main(int argc, char *argv[])
     int height = app.arguments().at(3).toInt();
 
     /* disable "right click" menu */
-    MyWebEngineView view("http://localhost:" + port, width, height);
+    MyWebEngineView view("127.0.0.1:" + port, width, height);
     view.setContextMenuPolicy(Qt::NoContextMenu);
 
-    QTextStream(stdout) << "Set url to: http://localhost:" + port << endl;
+    QTextStream(stdout) << "Set url to: 127.0.0.1:" + port << endl;
 
     view.startLoad();
 
