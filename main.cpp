@@ -56,19 +56,19 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     if (app.arguments().size() < 4) {
-        QTextStream(stderr) << "Usage: program <port> <width> <height>" << endl;
+        QTextStream(stderr) << "Usage: program <addr> <width> <height>" << endl;
         return 1;
     }
 
-    QString port = app.arguments().at(1);
+    QString addr = app.arguments().at(1);
     int width = app.arguments().at(2).toInt();
     int height = app.arguments().at(3).toInt();
 
     /* disable "right click" menu */
-    MyWebEngineView view("127.0.0.1:" + port, width, height);
+    MyWebEngineView view(addr, width, height);
     view.setContextMenuPolicy(Qt::NoContextMenu);
 
-    QTextStream(stdout) << "Set url to: 127.0.0.1:" + port << endl;
+    QTextStream(stdout) << "Set url to: 127.0.0.1:" + addr << endl;
 
     view.startLoad();
 
