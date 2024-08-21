@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
     MyWebEngineView view(addr, width, height);
     view.setContextMenuPolicy(Qt::NoContextMenu);
 
-    QTextStream(stdout) << "Set url to: 127.0.0.1:" + addr << endl;
+    QTextStream(stdout) << "Set url to: " + addr << endl;
 
     view.startLoad();
 
