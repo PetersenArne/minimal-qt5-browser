@@ -2,7 +2,7 @@ TEMPLATE = app
 
 QT += webenginewidgets
 
-SOURCES += main.cpp
+SOURCES += main_tests.cpp
 
 target.path = /opt/browser/minimal-qt5-browser/bin
 INSTALLS += target

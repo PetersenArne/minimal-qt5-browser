@@ -1,4 +1,3 @@
-#include <QCoreApplication>
 #include <QApplication>
 #include <QTextStream>
 #include <QWebEngineView>
