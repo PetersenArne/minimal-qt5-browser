@@ -1,27 +1,36 @@
 #include <QApplication>
-#include <QWebEngineView>
-#include <QMainWindow>
+#include <QWidget>
+#include <QPainter>
 
-int main(int argc, char *argv[])
-{
+class CircleWidget : public QWidget {
+protected:
+    void paintEvent(QPaintEvent *event) override {
+        QPainter painter(this);
+
+        // Set the background color to light blue
+        painter.fillRect(rect(), QColor(173, 216, 230)); // Light blue color
+
+        // Set the pen for drawing the circle
+        QPen pen(Qt::black, 3); // Black color, 3 pixels wide
+        painter.setPen(pen);
+
+        // Calculate the center and radius of the circle
+        int centerX = width() / 2;
+        int centerY = height() / 2;
+        int radius = qMin(width(), height()) / 4;
+
+        // Draw the circle
+        painter.drawEllipse(centerX - radius, centerY - radius, radius * 2, radius * 2);
+    }
+};
+
+int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
-    // Create a QMainWindow to contain the browser
-    QMainWindow window;
-
-    // Create a QWebEngineView widget (the browser)
-    QWebEngineView *view = new QWebEngineView(&window);
-
-    // Load a web page (default page or localhost)
-    view->setUrl(QUrl("http://www.example.com"));
-
-    // Set the QWebEngineView as the central widget of the window
-    window.setCentralWidget(view);
-
-    // Set window size
-    window.resize(1024, 768);
-
-    // Show the window
+    // Create and set up the main window
+    CircleWidget window;
+    window.setWindowTitle("Circle on Light Blue Background");
+    window.resize(1280, 720);
     window.show();
 
     return app.exec();
