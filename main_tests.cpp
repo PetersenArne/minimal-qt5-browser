@@ -146,13 +146,13 @@ public slots:
 };
 
 int main(int argc, char *argv[]) {
-    QString command = "/usr/bin/ts_calibrate";
+    QString command = "/usr/bin/ts_calib.sh";
 
     // Start the process
     QProcess process;
     process.start(command);
     process.waitForFinished();
-    
+
 
     QApplication app(argc, argv);
 
