@@ -128,7 +128,6 @@ public:
 
 public slots:
     void runShellCommand() {
-        // Example shell command
         QString command = "/usr/bin/ts_calibrate";
 
         // Start the process
@@ -147,6 +146,14 @@ public slots:
 };
 
 int main(int argc, char *argv[]) {
+    QString command = "/usr/bin/ts_calibrate";
+
+    // Start the process
+    QProcess process;
+    process.start(command);
+    process.waitForFinished();
+    
+
     QApplication app(argc, argv);
 
     MainWindow window;
