@@ -127,8 +127,8 @@ public:
         rebootButton->setGeometry(610, 10, 180, 30);
 
         connect(clearButton, &QPushButton::clicked, circleWidget, &CircleWidget::clearLines);
-        connect(commandButton, &QPushButton::clicked, this, &MainWindow::runShellCommand(0));
-        connect(rebootButton, &QPushButton::clicked, this, &MainWindow::runShellCommand(1));
+        connect(commandButton, &QPushButton::clicked, this, [this]() { runShellCommand(0); });
+        connect(rebootButton, &QPushButton::clicked, this, [this]() { runShellCommand(0); });
     }
 
 public slots:
