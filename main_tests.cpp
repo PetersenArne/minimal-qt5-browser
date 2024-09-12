@@ -101,6 +101,7 @@ class MainWindow : public QWidget {
     CircleWidget *circleWidget;
     QPushButton *clearButton;
     QPushButton *commandButton;
+    QPushButton *rebootButton;
 
 public:
     MainWindow(QWidget *parent = nullptr) : QWidget(parent) {
@@ -108,6 +109,7 @@ public:
         circleWidget = new CircleWidget(this);
         clearButton = new QPushButton("Clear Screen", this);
         commandButton = new QPushButton("Calibrate TS", this);
+        rebootButton = new QPushButton("Reboot", this);
 
         // Set the size and positioning of the circleWidget
         circleWidget->setGeometry(0, 0, 800, 480);
@@ -117,18 +119,27 @@ public:
         font.setPointSize(18);  // Set the desired font size
         clearButton->setFont(font);
         commandButton->setFont(font);
+        rebootButton->setFont(font);
 
         // Position the clearButton on top of the circleWidget
         clearButton->setGeometry(10, 440, 180, 30); // Adjust position and size as needed
         commandButton->setGeometry(610, 440, 180, 30);
+        rebootButton->setGeometry(610, 10, 180, 30);
 
         connect(clearButton, &QPushButton::clicked, circleWidget, &CircleWidget::clearLines);
-        connect(commandButton, &QPushButton::clicked, this, &MainWindow::runShellCommand);
+        connect(commandButton, &QPushButton::clicked, this, &MainWindow::runShellCommand(0));
+        connect(rebootButton, &QPushButton::clicked, this, &MainWindow::runShellCommand(1));
     }
 
 public slots:
-    void runShellCommand() {
-        QString command = "/usr/bin/ts_calibrate";
+    void runShellCommand(int n) {
+        QString command = ""; 
+
+        if (n == 0) {
+            command = "/usr/bin/ts_calibrate";
+        } else if (n == 1) {
+            command = "/sbin/reboot";
+        } 
 
         // Start the process
         QProcess process;
