@@ -127,19 +127,30 @@ public:
         rebootButton->setGeometry(610, 10, 180, 30);
 
         connect(clearButton, &QPushButton::clicked, circleWidget, &CircleWidget::clearLines);
-        connect(commandButton, &QPushButton::clicked, this, [this]() { runShellCommand(0); });
-        connect(rebootButton, &QPushButton::clicked, this, [this]() { runShellCommand(0); });
+        connect(commandButton, &QPushButton::clicked, this, &MainWindow::runCalibCommand);
+        connect(rebootButton, &QPushButton::clicked, this, &MainWindow::runRebootCommand);
     }
 
 public slots:
-    void runShellCommand(int n) {
-        QString command = ""; 
+    void runCalibCommand(int n) {
+        QString command = "/usr/bin/ts_calibrate"; 
 
-        if (n == 0) {
-            command = "/usr/bin/ts_calibrate";
-        } else if (n == 1) {
-            command = "/sbin/reboot";
-        } 
+        // Start the process
+        QProcess process;
+        process.start(command);
+        process.waitForFinished();
+
+        // Get the output
+        QString output = process.readAllStandardOutput();
+        QString error = process.readAllStandardError();
+
+        // Output the result to the console (for debugging purposes)
+        qDebug() << "Output:" << output;
+        if (error != "") qDebug() << "Error:" << error;
+    }
+
+    void runRebootCommand(int n) {
+        QString command = "/sbin/reboot";
 
         // Start the process
         QProcess process;
